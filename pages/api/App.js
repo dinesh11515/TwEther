@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./components/header";
 import Main from "./components/main";
+import Web3 from "web3";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Login from "./components/login";
@@ -9,7 +10,7 @@ import Login from "./components/login";
 export default function App(){
   const [currAcount,setCurrAccount] = React.useState("")
   const [registered,setRegistered] = React.useState(false)
-  const [instance,setInstance] = React.useState(null)
+  const [instance,setInstance] = React.useState()
   
   const providerOptions = {
     walletconnect: {
@@ -98,7 +99,7 @@ export default function App(){
       
     }
     catch(err){
-      console.log(err)
+      alert(err)
     }
   }
   if(currAcount!=""){
@@ -118,7 +119,7 @@ export default function App(){
   }
   return (
 
-    // <
+    
     <div>
       {
         currAcount != "" && registered
