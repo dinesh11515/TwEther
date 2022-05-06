@@ -5,6 +5,10 @@ import Web3 from "web3";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Login from "./components/login";
+import { ethers,Contract, providers, utils } from "ethers";
+import {
+  abi,TwEther_CONTRACT_ADDRESS
+} from "./constants";
 
 
 export default function App(){
@@ -20,6 +24,21 @@ export default function App(){
       }
     }
   };
+  const getProviderOrSigner = async (needSigner = false) => {
+    const provider = await web3ModalRef.current.connect();
+    const web3Provider = new providers.Web3Provider(provider);
+    const { chainId } = await web3Provider.getNetwork();
+    if (chainId !== 4) {
+      window.alert("Change the network to Rinkeby");
+      throw new Error("Change network to Rinkeby");
+    }
+
+    if (needSigner) {
+      const signer = web3Provider.getSigner();
+      return signer;
+    }
+    return web3Provider;
+  };
   const connect = async() => {
     try{
       const web3Modal = new Web3Modal({
@@ -27,88 +46,28 @@ export default function App(){
         cacheProvider: true, 
         providerOptions 
       });
-      const provider = await web3Modal.connect();
-      const web3 = new Web3(provider);
-      const accounts = await web3.eth.getAccounts();
-      setCurrAccount(accounts[0]);
+      const temp = await web3Modal.connect();
 
-      const contract = new web3.eth.Contract([
-        {
-          "inputs": [
-            {
-              "internalType": "string",
-              "name": "_name",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "_userId",
-              "type": "string"
-            }
-          ],
-          "name": "setDetails",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "name": "userDetails",
-          "outputs": [
-            {
-              "internalType": "string",
-              "name": "user_name",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "user_id",
-              "type": "string"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "name": "userRegistered",
-          "outputs": [
-            {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        }
-      ],'0xC3ad6d74b18537b8Be35b5114332e55DAf4c56aC')
+      const provider = new providers.Web3Provider(temp);
+      const signer = provider.getSigner();  
+      const account = await signer.getAddress();
+      setCurrAccount(account);
+      console.log(account)
+      const contract = new Contract(TwEther_CONTRACT_ADDRESS,abi,signer);
       setInstance(contract)
-      
+      console.log(contract)
     }
     catch(err){
       alert(err)
     }
   }
   if(currAcount!=""){
-  instance.methods.userRegistered(currAcount).call().then(data=>{
+  instance.userRegistered(currAcount).then(data=>{
     setRegistered(data)
   })
-}
+  }
   const register = async (name,id) => {
-    await instance.methods.setDetails(name,id).send({from:currAcount}).then(data=>{
+    await instance.setDetails(name,id).then(data=>{
       if(data.status){
         setRegistered(true)
       }

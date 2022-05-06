@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="body">
       <Head>
-        <title>Create Next App</title>
+        <title>TwEther</title>
         <meta name="description" content="Created by Dinesh Aitham" />
         <link rel="icon" href="/favicon.ico" />
         
