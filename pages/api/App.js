@@ -110,7 +110,7 @@ export default function App(){
   const register = async (name,id) => {
     await instance.methods.setDetails(name,id).send({from:currAcount}).then(data=>{
       if(data.status){
-        alert("Registerd")
+        setRegistered(true)
       }
       else{
         alert("Error")
