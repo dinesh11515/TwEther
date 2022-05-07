@@ -33,12 +33,12 @@ body {
   border-radius:20px
 }
 
-.header > h1 > svg {
+.header a > svg {
   margin-right: 20px;
   padding: 0;
 }
 
-.header > h1:hover{
+li:hover{
   background-color: rgba(231, 233, 234, 0.1);
 }
 
@@ -52,6 +52,26 @@ body {
   margin-top: 10px;
 }
 
+ul{
+  padding: 0;
+  
+}
+
+li {
+  list-style-type: none;
+  padding: 13px;
+  border-radius:20px
+}
+
+.header a{
+  text-decoration: none;
+  color: rgb(231, 233, 234);
+  transition: 0.2s;
+  font-size: 20px;
+  margin : 5px;
+  width : fit-content;
+  
+}
 
 
 .app{
