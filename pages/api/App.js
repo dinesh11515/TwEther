@@ -9,6 +9,7 @@ import { ethers,Contract, providers, utils } from "ethers";
 import {
   abi,TwEther_CONTRACT_ADDRESS
 } from "./constants";
+import Footer from "./components/footer";
 
 
 export default function App(){
@@ -86,6 +87,7 @@ export default function App(){
         <div  className="app">
           <Header connect={connect}/>
           <Main />
+          <Footer />
         </div>
         :
         <Login connect={connect} register={register} registered={registered} account={currAcount}/>
