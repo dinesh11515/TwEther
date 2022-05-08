@@ -23,12 +23,17 @@ export default function Login(props){
                     ?
                     <button className="connect" onClick={props.connect}>connect wallet</button>
                     :
-                    
-                    <div className="register_form">
-                        <input type="text" className="user_name" placeholder="name" name="name" onChange={setUserDetails}></input>
-                        <input type="text" className="user_name" placeholder="Id" name="id"></input>
-                        <button className="connect" onClick={()=>props.register(details.name,details.id)}>Register</button>
+                    <div>
+                        {
+                            !props.registered &&
+                            <div className="register_form">
+                                <input type="text" className="user_name" placeholder="name" name="name" onChange={setUserDetails}></input>
+                                <input type="text" className="user_name" placeholder="Id" name="id"></input>
+                                <button className="connect" onClick={()=>props.register(details.name,details.id)}>Register</button>
+                            </div>
+                        }   
                     </div>
+                    
                     
                 }
             </div>
