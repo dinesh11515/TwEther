@@ -1,6 +1,6 @@
 import '../styles/index.css'
 import Layout from './api/components/layout'
-import React from "react";
+import React, { useEffect } from "react";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Login from "./api/components/login";
@@ -59,11 +59,11 @@ function MyApp({ Component, pageProps }) {
       alert(err)
     }
   }
-  if(currAcount!=""){
-  instance.userRegistered(currAcount).then(data=>{
-    setRegistered(data)
-  })
-  }
+  useEffect(()=>{
+    if(currAcount!=""){
+      setRegistered(instance.userRegistered(currAcount))
+    }
+  },[currAcount])
   const register = async (name,id) => {
     try{
       await instance.register(name,id).then(
@@ -82,7 +82,7 @@ function MyApp({ Component, pageProps }) {
         currAcount != "" && registered
         ?
         <div  >
-          <Layout tweet={tweet}>
+          <Layout>
             <Component {...pageProps} />
           </Layout>
         </div>

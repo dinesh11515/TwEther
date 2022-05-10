@@ -3,8 +3,8 @@ import Footer from "./footer";
 import Header from "./header";
 
 
-export default function Layout({children},props){
-    children.props = props.tweet;
+export default function Layout({children}){
+    
     return(
         <div className="app">
             <Header />

@@ -11,6 +11,8 @@ export default function Login(props){
             [event.target.name] : event.target.value
         }))
     }
+    
+    
     return (
         <div className="login">
             <img src="/twether-start.png" className="twitter"></img>
@@ -28,7 +30,7 @@ export default function Login(props){
                             !props.registered &&
                             <div className="register_form">
                                 <input type="text" className="user_name" placeholder="name" name="name" onChange={setUserDetails}></input>
-                                <input type="text" className="user_name" placeholder="Id" name="id"></input>
+                                <input type="text" className="user_name" placeholder="Id" name="id" onChange={setUserDetails}></input>
                                 <button className="connect" onClick={()=>props.register(details.name,details.id)}>Register</button>
                             </div>
                         }   

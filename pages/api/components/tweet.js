@@ -3,18 +3,18 @@ import {FaRegComment} from 'react-icons/fa';
 import {AiOutlineRetweet,AiOutlineHeart} from 'react-icons/ai';
 import {BiDownvote} from 'react-icons/bi';
 import {FiShare} from 'react-icons/fi';
-export default function Tweet(){
+export default function Tweet(props){
     return(
-        <div>
+        <div className="tweet">
             <div className="tweet_details">
                 <img src="./twether_profile.jpg" className="profile_tweet"></img>
                 <div>
                     <div className="name">
                         <h2 >Dinesh Aitham</h2>
-                        <p>@dineshaitham1</p>
+                        <p>{props.tweeter}</p>
                     </div>
                     <h3 className="tweet_matter">
-                        Hello everyone
+                        {props.tweetMsg}
                     </h3>
                 </div>
             </div>

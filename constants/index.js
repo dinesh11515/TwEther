@@ -55,6 +55,19 @@ export const abi = [
   },
   {
     "inputs": [],
+    "name": "counter",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "getMyTweets",
     "outputs": [
       {
@@ -93,6 +106,11 @@ export const abi = [
     ],
     "name": "getTweet",
     "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
       {
         "internalType": "string",
         "name": "",
@@ -150,7 +168,7 @@ export const abi = [
       },
       {
         "internalType": "string",
-        "name": "_userId",
+        "name": "_userProfile",
         "type": "string"
       }
     ],
@@ -217,4 +235,4 @@ export const abi = [
   }
 ]
 
-export const TwEther_CONTRACT_ADDRESS = "0x850780e7768fDC1740e0636D19cd18A6e60E8155"
+export const TwEther_CONTRACT_ADDRESS = "0x93e61713c9E3DDB192F2fBb154dccE717d451205"
