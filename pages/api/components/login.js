@@ -2,8 +2,8 @@ import React from "react";
 import { useState } from "react";
 export default function Login(props){
     const [details,setDetails] = useState({
-        name : "",
-        id : "",
+        first_name : "",
+        last_name : "",
     })
     function setUserDetails(event){
         setDetails(prevState => ({
@@ -29,9 +29,9 @@ export default function Login(props){
                         {
                             !props.registered &&
                             <div className="register_form">
-                                <input type="text" className="user_name" placeholder="name" name="name" onChange={setUserDetails}></input>
-                                <input type="text" className="user_name" placeholder="Id" name="id" onChange={setUserDetails}></input>
-                                <button className="connect" onClick={()=>props.register(details.name,details.id)}>Register</button>
+                                <input type="text" className="user_name" placeholder="First name" name="first_name" onChange={setUserDetails}></input>
+                                <input type="text" className="user_name" placeholder="Last name" name="last_name" onChange={setUserDetails}></input>
+                                <button className="connect" onClick={()=>props.register(details.first_name+' '+details.last_name)}>Register</button>
                             </div>
                         }   
                     </div>

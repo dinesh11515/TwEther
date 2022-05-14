@@ -60,9 +60,9 @@ function MyApp({ Component, pageProps }) {
       alert(err)
     }
   }
-  const register = async (name,id) => {
+  const register = async (name) => {
     try{
-      const tx = await instance.register(name,id)
+      const tx = await instance.register(name)
       await tx.wait()
       setRegistered(true)
     }

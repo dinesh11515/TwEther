@@ -180,11 +180,6 @@ export const abi = [
         "internalType": "string",
         "name": "_name",
         "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_userProfile",
-        "type": "string"
       }
     ],
     "name": "register",
@@ -238,11 +233,6 @@ export const abi = [
         "internalType": "string",
         "name": "user_name",
         "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "user_profile",
-        "type": "string"
       }
     ],
     "stateMutability": "view",
@@ -250,4 +240,4 @@ export const abi = [
   }
 ]
 
-export const TwEther_CONTRACT_ADDRESS = "0xaA50779DD2044B0976188841B5AcDc5C11d56d5D"
+export const TwEther_CONTRACT_ADDRESS = "0x3A7cBA3be0852871e49D367871457938E0859055"

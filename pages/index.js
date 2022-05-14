@@ -6,11 +6,17 @@ import {
 } from "../constants";
 import Web3Modal from "web3modal";
 import { useEffect, useRef, useState } from 'react';
+import { format } from 'path';
 export default function Home(props) {
   const [msg,setMsg] = useState("")
   const [datasTweet,setDatasTweet] = useState([])
   function setUserMsg(event){
     setMsg(event.target.value)
+  }
+  async function handleClick(){
+    const msgInput = document.getElementsByClassName('tweet_content')[0];
+    await tweet(msgInput.value);
+    msgInput.value = '';
   }
   const getProviderOrSigner = async (needSigner = false) => {
     const web3Modal = new Web3Modal({
@@ -38,12 +44,10 @@ export default function Home(props) {
       const tx = await contract.tweetCreated(data)
       await tx.wait()
       getTweets()
-
     }
     catch(err){
       alert(err.message)
     }
-    
   }
   async function getTweets(){
     const signer = await getProviderOrSigner();
@@ -100,7 +104,7 @@ export default function Home(props) {
                     <input type="text" className="tweet_content" placeholder="What's happening" onChange={setUserMsg}></input>
                 </div>
                 <div className="attachments">
-                    <button onClick={()=>tweet(msg)}>Tweet</button>
+                    <button onClick={handleClick}>Tweet</button>
                 </div>
                 
             </div>
