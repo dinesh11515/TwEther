@@ -10,8 +10,8 @@ export default function Tweet(props){
                 <img src="./twether_profile.jpg" className="profile_tweet"></img>
                 <div>
                     <div className="name">
-                        <h2 >Dinesh Aitham</h2>
-                        <p>{props.tweeter}</p>
+                        <h2 >{props.tweeter}</h2>
+                        <p>@{props.address.slice(0,15)}</p>
                     </div>
                     <h3 className="tweet_matter">
                         {props.tweetMsg}

@@ -70,22 +70,18 @@ export default function Home(props) {
       const tweet = await contract.Tweets(id);
       const parsedTweet = {
         tweetId: id,
-        username: tweet.user_name,
+        username: tweet.username,
         tweetData: tweet.tweetData,
+        address : tweet.tweeter,
       };
       return parsedTweet;
     } catch (error) {
       console.error(error);
     }
   };
-   function print(name,data){
-    return (
-      <Tweet tweetMsg={data} tweeter={name}/>
-    )
-  }
   const tweetPrint = datasTweet.map((ele,index)=>{
     return(
-      <Tweet key={index} tweetMsg={ele.tweetData}/>
+      <Tweet key={index} tweetMsg={ele.tweetData} address ={ele.address} tweeter = {ele.username}/>
     )
   })
   

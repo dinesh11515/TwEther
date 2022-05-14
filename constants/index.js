@@ -46,6 +46,11 @@ export const abi = [
       },
       {
         "internalType": "string",
+        "name": "username",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
         "name": "tweetData",
         "type": "string"
       }
@@ -81,6 +86,11 @@ export const abi = [
             "internalType": "uint256",
             "name": "id",
             "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "username",
+            "type": "string"
           },
           {
             "internalType": "string",
@@ -149,6 +159,11 @@ export const abi = [
         "internalType": "uint256",
         "name": "id",
         "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "username",
+        "type": "string"
       },
       {
         "internalType": "string",
@@ -235,4 +250,4 @@ export const abi = [
   }
 ]
 
-export const TwEther_CONTRACT_ADDRESS = "0xB23e90Fa05D5F9d77b919dEAeEF558Cff18E42dB"
+export const TwEther_CONTRACT_ADDRESS = "0xaA50779DD2044B0976188841B5AcDc5C11d56d5D"
