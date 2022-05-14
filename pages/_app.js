@@ -53,22 +53,18 @@ function MyApp({ Component, pageProps }) {
       console.log(account)
       const contract = new Contract(TwEther_CONTRACT_ADDRESS,abi,signer);
       setInstance(contract)
+      setRegistered(await contract.userRegistered(account))
       console.log(contract)
     }
     catch(err){
       alert(err)
     }
   }
-  useEffect(()=>{
-    if(currAcount!=""){
-      setRegistered(instance.userRegistered(currAcount))
-    }
-  },[currAcount])
   const register = async (name,id) => {
     try{
-      await instance.register(name,id).then(
-          setRegistered(true)
-      )
+      const tx = await instance.register(name,id)
+      await tx.wait()
+      setRegistered(true)
     }
     catch(err){
       alert(err.message)

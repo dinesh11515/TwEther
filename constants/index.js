@@ -235,4 +235,4 @@ export const abi = [
   }
 ]
 
-export const TwEther_CONTRACT_ADDRESS = "0x93e61713c9E3DDB192F2fBb154dccE717d451205"
+export const TwEther_CONTRACT_ADDRESS = "0xB23e90Fa05D5F9d77b919dEAeEF558Cff18E42dB"

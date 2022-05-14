@@ -35,21 +35,22 @@ export default function Home(props) {
     const signer = await getProviderOrSigner(true);
     const contract = new Contract(TwEther_CONTRACT_ADDRESS,abi,signer);
     try{
-      await contract.tweetCreated(data)
+      const tx = await contract.tweetCreated(data)
+      await tx.wait()
+      getTweets()
+
     }
     catch(err){
       alert(err.message)
     }
     
   }
-  // var counter = 0;
-  //var tweetData = []
   async function getTweets(){
     const signer = await getProviderOrSigner();
     const contract = new Contract(TwEther_CONTRACT_ADDRESS,abi,signer);
     const len = (await contract.counter()).toString();
     console.log(len)
-    const max_tweets = 3;
+    const max_tweets = 4;
     let index = 0;
     let tweetData = []
     for(let i = len-1;i>=0 && i>=len-max_tweets;i--){
@@ -67,62 +68,24 @@ export default function Home(props) {
       const provider = await getProviderOrSigner();
       const contract = new Contract(TwEther_CONTRACT_ADDRESS,abi,provider);
       const tweet = await contract.Tweets(id);
-      //console.log(await contract.Tweets(0))
       const parsedTweet = {
         tweetId: id,
         username: tweet.user_name,
         tweetData: tweet.tweetData,
       };
-      //console.log(parsedTweet)
       return parsedTweet;
     } catch (error) {
       console.error(error);
     }
   };
    function print(name,data){
-    // let temp = await tweetPrint()
-    // console.log(temp)
     return (
       <Tweet tweetMsg={data} tweeter={name}/>
     )
   }
-  // useEffect(()=>{
-
-  //   // const twe = oneTweet(0)
-  //   // twe.then(data=>{print(data.username,data.tweetData)})
-  //   for(var x in tweetData){
-  //     console.log(x)
-  //   }
-  // },[tweetData])
-  //console.log(tweetData)
-  
-  // const tweetPrint = async ()=>{
-  //   // let tweetData = []
-  //   // const twe = await oneTweet(0)
-  //   // tweetData.push(twe)
-  //   // setDatasTweet(tweetData)
-  // }
-  // useEffect(()=>{
-  //   tweetPrint()
-  // },[])
-  
-  // tweetData.forEach((person) => { console.log(person); });
-  console.log(datasTweet)
-  // function tweetPrint(){
-  //   return(
-
-  //   )
-  // }
-  // const data = [1,2,3]
-  // const iterator = tweetData.values()
-  // console.log(tweetData)
-  // for(const value of iterator) {
-  //   console.log(value);
-  // }
-
-  const tweetPrint = datasTweet.map(ele=>{
+  const tweetPrint = datasTweet.map((ele,index)=>{
     return(
-      <Tweet tweetMsg={ele.tweetData}/>
+      <Tweet key={index} tweetMsg={ele.tweetData}/>
     )
   })
   
