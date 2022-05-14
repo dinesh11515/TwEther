@@ -47,7 +47,12 @@ function MyApp({ Component, pageProps }) {
       const temp = await web3Modal.connect();
 
       const provider = new providers.Web3Provider(temp);
-      const signer = provider.getSigner();  
+      const signer = provider.getSigner(); 
+      const { chainId } = await provider.getNetwork();
+      if (chainId !== 5) {
+        
+        throw new Error("Change network to Georli");
+      }
       const account = await signer.getAddress();
       setCurrAccount(account);
       console.log(account)
